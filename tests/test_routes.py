@@ -124,7 +124,7 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     # ADD YOUR TEST CASES HERE ...
-    #test read account
+    # test read account
     def test_get_account(self):
         """It should Read a single Account"""
         account = self._create_accounts(1)[0]
@@ -140,7 +140,7 @@ class TestAccountService(TestCase):
         resp = self.client.get(f"{BASE_URL}/0")
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
-    #test update account
+    # test update account
     def test_update_account(self):
         """It should Update an existing Account"""
         # create an Account to update
@@ -156,6 +156,7 @@ class TestAccountService(TestCase):
         updated_account = resp.get_json()
         self.assertEqual(updated_account["name"], "Something Known")
     
+    # test a thing
     def test_account_not_found_update(self):
         """It should Update a non existant Account"""
         # create an Account to update
@@ -169,14 +170,14 @@ class TestAccountService(TestCase):
         resp = self.client.put(f"{BASE_URL}/0", json=new_account)
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
-    #test delete account
+    # test delete account
     def test_delete_account(self):
         """It should Delete an Account"""
         account = self._create_accounts(1)[0]
         resp = self.client.delete(f"{BASE_URL}/{account.id}")
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
     
-    #test list accounts
+    # test list accounts
     def test_get_account_list(self):
         """It should Get a list of Accounts"""
         self._create_accounts(5)
